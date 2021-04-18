@@ -9,14 +9,14 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import { ExpandMoreOutlined } from "@material-ui/icons";
 
-function Post({ profilePic, image, username, timestamp, message }) {
+function Post({ profilePic, image, username, Timestamp, message }) {
 	return (
 		<div className="post">
 			<div className="post__top">
 				<Avatar src={profilePic} className="post__avatar" />
 				<div className="post__topInfo">
 					<h3>{username}</h3>
-					<p>Timestamp</p>
+					<p>{new Date(Timestamp?.toDate()).toDateString()}</p>
 				</div>
 			</div>
 			<div className="post__bottom">
