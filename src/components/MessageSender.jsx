@@ -7,6 +7,9 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { Avatar } from "@material-ui/core";
 import { useStateValue } from "StateProvider.js";
 
+import db from "firebase.js";
+import firebase from "firebase";
+
 function MessageSender() {
 	const [{ user }, dispatch] = useStateValue();
 	const [input, setInput] = useState("");
@@ -16,6 +19,13 @@ function MessageSender() {
 		e.preventDefault();
 
 		//db stuff
+		db.collection("posts").add({
+			message: input,
+			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+			profilePic: user.photoURL,
+			username: user.displayName,
+			image: imageUrl,
+		});
 
 		setInput("");
 		setImageUrl("");
